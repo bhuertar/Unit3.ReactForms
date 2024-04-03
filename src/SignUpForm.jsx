@@ -1,9 +1,9 @@
 import { useState } from "react"
 
-const SignUp = () => {
+const SignUp = ({setToken}) => {
 
-  const [nameInput, setNameInput] = useState();
-  const [passInput, setPassInput] = useState();
+  const [nameInput, setNameInput] = useState('');
+  const [passInput, setPassInput] = useState('');
   const [error, setError] =useState(null);
 
   const SignUp_API = 'https://fsa-jwt-practice.herokuapp.com/signup'
@@ -25,7 +25,8 @@ const SignUp = () => {
       });
       // console.log(response)
       const json = await response.json();
-      console.log(json);
+      // console.log(json);
+      setToken(json.token)
     } catch(error) {
       setError(error.message)
     }
